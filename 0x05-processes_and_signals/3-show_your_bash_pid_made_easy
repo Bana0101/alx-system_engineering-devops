@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# a script bash that display currently running processes
+pgrep -l bash
