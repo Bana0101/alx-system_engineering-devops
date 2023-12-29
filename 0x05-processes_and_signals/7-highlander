@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# a script bash that display currently running processes
+terminate() {
+       echo " I am invincible!!!"
+}
+
+trap terminate SIGTERM
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
