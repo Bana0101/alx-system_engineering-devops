@@ -14,6 +14,8 @@ interrupt() {
 trap terminate SIGTERM SIGQUIT
 trap interrupt SIGINT
 
+echo $$ > /var/run/myscript.pid
+
 while true; do
 	echo "To infinity and beyond"
 	sleep 2
