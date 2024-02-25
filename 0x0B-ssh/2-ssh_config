@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# use ssh to connect to our server using private key
+Host
+  User ubuntu
+  IdentityFile ~/.ssh/school
+  PasswordAuthentication no
