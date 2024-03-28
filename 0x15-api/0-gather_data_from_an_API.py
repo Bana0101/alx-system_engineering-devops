@@ -21,4 +21,4 @@ if __name__ == '__main__':
             done += 1
     print(f'Employee {name} is done with tasks({done}/{total}):')
     for task in tasks:
-        print(f'\t {task}')
+        print(f'\t { task}')
