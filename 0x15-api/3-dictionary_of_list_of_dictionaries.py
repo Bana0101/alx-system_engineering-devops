@@ -9,7 +9,7 @@ if __name__ == '__main__':
     for user in resp:
         id = user.get("id")
         resp_task = requests.get('https://jsonplaceholder.typicode.com'
-                f'/users/{id}/todos/')
+                                 f'/users/{id}/todos/')
         tasks = resp_task.json()
         all_user_dict[id] = [
                 {
