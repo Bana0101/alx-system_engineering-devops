@@ -6,7 +6,8 @@ import requests
 def top_ten(subreddit):
     """ a function that queries the Reddit API
     and returns the number of subscribers """
-    response = requests.get(f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10')
+    url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
+    response = requests.get(url)
     if response.status_code >= 300:
         print('None')
     else:
