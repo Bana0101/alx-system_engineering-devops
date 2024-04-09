@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module for task 2"""
-    import requests
+import requests
 
 
 def recurse(subreddit, hot_list=[], count=0, after=None):
