@@ -1,28 +1,28 @@
 #!/usr/bin/python3
 """Module for task 2"""
+    import requests
 
 
 def recurse(subreddit, hot_list=[], count=0, after=None):
-    """Queries the Reddit API and returns all hot posts
-    of the subreddit"""
-    import requests
+    """returns a list containing the titles of all
+    hot articles for a given subreddit"""
 
-    sub_info = requests.get("https://www.reddit.com/r/{}/hot.json"
+    response = requests.get("https://www.reddit.com/r/{}/hot.json"
                             .format(subreddit),
                             params={"count": count, "after": after},
                             headers={"User-Agent": "My-User-Agent"},
                             allow_redirects=False)
-    if sub_info.status_code >= 400:
+    if response.status_code >= 400:
         return None
 
-    hot_l = hot_list + [child.get("data").get("title")
-                        for child in sub_info.json()
+    hot_list.append([child.get("data").get("title")
+                        for child in response.json()
                         .get("data")
-                        .get("children")]
+                        .get("children")])
 
-    info = sub_info.json()
+    info = response.json()
     if not info.get("data").get("after"):
-        return hot_l
+        return hot_list
 
-    return recurse(subreddit, hot_l, info.get("data").get("count"),
+    return recurse(subreddit, hot_list, info.get("data").get("count"),
                    info.get("data").get("after"))
