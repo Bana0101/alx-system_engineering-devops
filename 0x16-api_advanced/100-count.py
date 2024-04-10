@@ -1,28 +1,25 @@
 #!/usr/bin/python3
 """Module for task 3"""
+import requests
 
 
 def count_words(subreddit, word_list, word_count={}, after=None):
-    """Queries the Reddit API and returns the count of words in
-    word_list in the titles of all the hot posts
-    of the subreddit"""
-    import requests
+    """parses the title of all hot articles,
+    and prints a sorted count of given keywords"""
 
-    sub_info = requests.get("https://www.reddit.com/r/{}/hot.json"
-                            .format(subreddit),
+    response = requests.get(f'https://www.reddit.com/r/{subreddit}/hot.json',
                             params={"after": after},
                             headers={"User-Agent": "My-User-Agent"},
                             allow_redirects=False)
-    if sub_info.status_code != 200:
+    if response.status_code != 200:
         return None
 
-    info = sub_info.json()
+    info = response.json()
 
-    hot_l = [child.get("data").get("title")
-             for child in info
-             .get("data")
-             .get("children")]
-    if not hot_l:
+    hot_list = []
+    for child in info.get("data").get("children"):
+        hot_list.append(child.get("data").get("title"))
+    if not hot_list:
         return None
 
     word_list = list(dict.fromkeys(word_list))
@@ -30,7 +27,7 @@ def count_words(subreddit, word_list, word_count={}, after=None):
     if word_count == {}:
         word_count = {word: 0 for word in word_list}
 
-    for title in hot_l:
+    for title in hot_list:
         split_words = title.split(' ')
         for word in word_list:
             for s_word in split_words:
