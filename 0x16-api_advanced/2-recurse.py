@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""Module for task 2"""
+"""Module documentation"""
 import requests
 
 
 def recurse(subreddit, hot_list=[], count=0, after=None):
-    """returns a list containing the titles of all
-    hot articles for a given subreddit"""
+    """returns a list containing the titles
+    of all hot articles for a given subreddit"""
 
-    response = requests.get("https://www.reddit.com/r/{}/hot.json"
-                            .format(subreddit),
+    response = requests.get(f'https://www.reddit.com/r/{subreddit}/hot.json',
                             params={"count": count, "after": after},
                             headers={"User-Agent": "My-User-Agent"},
                             allow_redirects=False)
