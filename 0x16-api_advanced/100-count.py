@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for task 3"""
+"""Module documentation"""
 import requests
 
 
