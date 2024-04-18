@@ -1,12 +1,2 @@
-# Change the OS configuration 
-
-exec { 'file-limit-for-holberton-user':
-  command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
-  path    => '/usr/local/bin/:/bin/'
-}
-
-# Increase soft file limit for Holberton user.
-exec { 'file-limit-for-holberton-user':
-  command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
-  path    => '/usr/local/bin/:/bin/'
-}
+#fix bug 2
+exec { '/usr/bin/env sed -i "s/holberton/foo/" /etc/security/limits.conf': }
